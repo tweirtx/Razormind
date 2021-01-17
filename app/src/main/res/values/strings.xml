@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Razormind</string>
+    <string name="reset_count">Reset Count</string>
+    <string name="to_increment_add_the_widget_to_the_home_screen">To increment, add the widget to the home screen
+    </string>
+    <string name="nada">nada</string>
+    <string name="save">Save</string>
+</resources>
