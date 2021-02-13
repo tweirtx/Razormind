@@ -40,16 +40,6 @@ public class Beep extends AppWidgetProvider {
         }
     }
 
-    public void toasty(Context context) {
-        CharSequence asdf = "aaaaaaaaaaaaaa";
-        Toast toast = Toast.makeText(context, asdf, Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    public void toasty(View view) {
-        toasty(view.getContext());
-    }
-
     @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
