@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -38,5 +39,14 @@ public class MainActivity extends AppCompatActivity {
         EditText numReset = (EditText) findViewById(R.id.num);
         editor.putInt("reset_count", Integer.parseInt(numReset.getText().toString()));
         editor.apply();
+    }
+    public void toastyC(Context context) {
+        CharSequence asdf = "aaaaaaaaaaaaaa";
+        Toast toast = Toast.makeText(context, asdf, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void toasty(View view) {
+        toastyC(view.getContext());
     }
 }
