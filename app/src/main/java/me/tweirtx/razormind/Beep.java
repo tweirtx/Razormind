@@ -19,11 +19,7 @@ public class Beep extends AppWidgetProvider {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.beep);
-
-        // R.layout.beep.setOnClickListener();
-        CharSequence asdf = "aaaaaaaaaaaaaa";
-        Toast toast = Toast.makeText(context, asdf, Toast.LENGTH_SHORT);
-        toast.show();
+        
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
@@ -34,9 +30,6 @@ public class Beep extends AppWidgetProvider {
 
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
-
-            Intent toastIntent = new Intent(context, Beep.class);
-            toastIntent.setAction("TOAST_ACTION");
         }
     }
 
