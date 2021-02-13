@@ -29,5 +29,6 @@ public class Widget extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
+
 }
 
