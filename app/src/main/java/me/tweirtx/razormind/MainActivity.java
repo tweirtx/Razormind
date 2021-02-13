@@ -41,8 +41,22 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
     public void toastyC(Context context) {
-        CharSequence asdf = "aaaaaaaaaaaaaa";
-        Toast toast = Toast.makeText(context, asdf, Toast.LENGTH_SHORT);
+        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+        int reset_count = sp.getInt("reset_count", 0);
+        int current_count = sp.getInt("current_count", 0);
+        current_count++;
+        CharSequence output;
+        if (current_count >= reset_count) {
+            output = "Change time!";
+            current_count = 0;
+        }
+        else {
+            output = "Number of uses: " + current_count;
+        }
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("current_count", current_count);
+        editor.apply();
+        Toast toast = Toast.makeText(context, output, Toast.LENGTH_SHORT);
         toast.show();
     }
 
