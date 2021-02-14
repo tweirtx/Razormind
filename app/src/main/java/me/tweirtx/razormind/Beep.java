@@ -1,11 +1,13 @@
 package me.tweirtx.razormind;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -38,10 +40,24 @@ public class Beep extends AppWidgetProvider {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
-
 		// Check if it was our button that was clicked.
 		if (Beep.WIDGET_BUTTON.equals(intent.getAction())) {
-			Toast.makeText(context, "Hi Travis!\nLook! I work-y!", Toast.LENGTH_LONG).show();
+			SharedPreferences sp = context.getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+			int reset_count = sp.getInt("reset_count", 0);
+			int current_count = sp.getInt("current_count", 0);
+			current_count++;
+			CharSequence output;
+			if (current_count >= reset_count) {
+				output = "Change time!";
+				current_count = 0;
+			}
+			else {
+				output = "Number of uses: " + current_count;
+			}
+			SharedPreferences.Editor editor = sp.edit();
+			editor.putInt("current_count", current_count);
+			editor.apply();
+			Toast.makeText(context, output, Toast.LENGTH_LONG).show();
 		}
 	}
 
