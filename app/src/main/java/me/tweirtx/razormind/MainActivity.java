@@ -6,13 +6,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Make sure super is called first.
+        super.onCreate(savedInstanceState);
+
+        // Set the view of the activity to be the main activity xml view
+        setContentView(R.layout.activity_main);
+
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
 
         if (!sp.contains("reset_count")) {
@@ -24,11 +31,9 @@ public class MainActivity extends AppCompatActivity {
         int reset_count = sp.getInt("reset_count", 0);
         int current_count = sp.getInt("current_count", 0);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         EditText numReset = (EditText) findViewById(R.id.num);
         numReset.setText(String.valueOf(reset_count));
-        AppCompatTextView numCurrent = findViewById(R.id.textView3);
+        TextView numCurrent = findViewById(R.id.textView3);
         numCurrent.setText("Current count: " + current_count);
     }
 
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("reset_count", Integer.parseInt(numReset.getText().toString()));
         editor.apply();
     }
+
     public void toastyC(Context context) {
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
         int reset_count = sp.getInt("reset_count", 0);
